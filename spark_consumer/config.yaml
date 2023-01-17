@@ -1,0 +1,36 @@
+---
+
+kafka_bootstrap_servers:
+  - localhost:9093
+kafka_topic:
+  - userEvents
+
+avro_schema:
+  namespace: "user_events.serialization.avro"
+  name: Event
+  type: record
+  fields:
+    - name: EventId
+      type: string
+    - name: UserId
+      type: int
+    - name: AdId
+      type: 
+        - int
+        - null
+    - name: ItemId
+      type: int
+    - name: Ts
+      type: long
+      logicalType: "timestamp-micros"
+    - name: Kind
+      type: int
+  
+db_conn_info:
+  host: "foo"
+  port: 5432
+  dbname: main
+  user: user_events_consumer_service
+  password: foobar1234!
+
+dest_table: user_events_raw
